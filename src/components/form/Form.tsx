@@ -3,11 +3,12 @@ import { Button, Col, Form, Row, Stack } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { FormEvent, useRef, useState } from 'react';
 import { v4 } from 'uuid';
+import { Tag } from '../../types';
 
 const CustomForm = () => {
   const titleRef = useRef<HTMLInputElement>(null);
   const textRef = useRef<HTMLTextAreaElement>(null);
-  const [selectedTags, setSelectedTags] = useState([]);
+  const [selectedTags, setSelectedTags] = useState<Tag[]>([]);
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
@@ -15,7 +16,7 @@ const CustomForm = () => {
     const title = titleRef.current?.value;
     const markdown = textRef.current?.value;
 
-    console.log(title, markdown);
+    console.log(title, markdown, selectedTags);
   };
 
   return (
@@ -32,11 +33,13 @@ const CustomForm = () => {
           <Form.Group>
             <Form.Label>Tags</Form.Label>
             <ReactSelect
+              options={selectedTags}
+              onChange={(allTags) => setSelectedTags(allTags as Tag[])}
               className="text-black"
               isMulti
               onCreateOption={(text: string) => {
                 const newTag = { label: text, value: v4() };
-                console.log(newTag)
+                setSelectedTags([...selectedTags, newTag]);
               }}
             />
           </Form.Group>
