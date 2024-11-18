@@ -1,26 +1,34 @@
 import ReactSelect from 'react-select/creatable';
 import { Button, Col, Form, Row, Stack } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { FormEvent, useRef, useState } from 'react';
 import { v4 } from 'uuid';
 import { Tag } from '../../types';
+import { CreateProps } from '../../pages/Create';
 
-const CustomForm = () => {
+const CustomForm = ({
+  handleSubmit,
+  createTag,
+  availableTags,
+}: CreateProps) => {
+  const navigate = useNavigate();
+
   const titleRef = useRef<HTMLInputElement>(null);
   const textRef = useRef<HTMLTextAreaElement>(null);
   const [selectedTags, setSelectedTags] = useState<Tag[]>([]);
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleForm = (e: FormEvent) => {
     e.preventDefault();
 
-    const title = titleRef.current?.value;
-    const markdown = textRef.current?.value;
+    const title = titleRef.current?.value || '';
+    const markdown = textRef.current?.value || '';
 
-    console.log(title, markdown, selectedTags);
+    handleSubmit({ title, markdown, tags: selectedTags });
+    navigate('/');
   };
 
   return (
-    <Form onSubmit={handleSubmit}>
+    <Form onSubmit={handleForm}>
       <Row className="my-4">
         <Col>
           <Form.Group>
@@ -33,12 +41,14 @@ const CustomForm = () => {
           <Form.Group>
             <Form.Label>Tags</Form.Label>
             <ReactSelect
+              options={availableTags}
               value={selectedTags}
               onChange={(allTags) => setSelectedTags(allTags as Tag[])}
               className="text-black"
               isMulti
               onCreateOption={(text: string) => {
                 const newTag = { label: text, value: v4() };
+                createTag(newTag);
                 setSelectedTags([...selectedTags, newTag]);
               }}
             />
