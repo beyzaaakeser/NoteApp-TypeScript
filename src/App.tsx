@@ -21,7 +21,18 @@ const App = () => {
     setNotes((prev) => [...prev, newNote]);
   };
 
-  console.log(notes);
+  const deleteNote = (id: string): void => {
+    if (!confirm('Are you sure you want to delete ? ')) return;
+
+    setNotes((prev) => prev.filter((i) => i.id !== id));
+  };
+
+  const updateNote = (id: string, updatedData: NoteData): void => {
+    const updatedeArr = notes.map((note) =>
+      note.id === id ? { id, ...updatedData } : note
+    );
+    setNotes(updatedeArr);
+  };
 
   return (
     <BrowserRouter
@@ -41,8 +52,17 @@ const App = () => {
         />
 
         <Route path="/note/:id" element={<Layout notes={notes} />}>
-          <Route index element={<Detail />} />
-          <Route path="edit" element={<Edit />} />
+          <Route index element={<Detail deleteNote={deleteNote} />} />
+          <Route
+            path="edit"
+            element={
+              <Edit
+                handleSubmit={updateNote}
+                createTag={createTag}
+                availableTags={tags}
+              />
+            }
+          />
         </Route>
       </Routes>
     </BrowserRouter>

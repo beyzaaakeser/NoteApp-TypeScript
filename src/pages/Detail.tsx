@@ -3,7 +3,12 @@ import { Link, useOutletContext } from 'react-router-dom';
 import { Note } from '../types';
 import { Badge, Button, Col, Container, Row, Stack } from 'react-bootstrap';
 import ReactMarkdown from 'react-markdown';
-const Detail = () => {
+
+type Props = {
+  deleteNote: (id: string) => void;
+};
+
+const Detail = ({ deleteNote }: Props) => {
   const note: Note = useOutletContext();
   return (
     <Container className="mx-auto py-5">
@@ -25,7 +30,9 @@ const Detail = () => {
               <Button>Edit</Button>
             </Link>
             <Link to={'/'}>
-              <Button variant="danger">Delete</Button>
+              <Button onClick={() => deleteNote(note.id)} variant="danger">
+                Delete
+              </Button>
             </Link>
           </Stack>
         </Col>

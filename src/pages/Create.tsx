@@ -7,13 +7,17 @@ export type CreateProps = {
   handleSubmit: (data: NoteData) => void;
   createTag: (tag: Tag) => void;
   availableTags: Tag[];
-};
+} & Partial<NoteData>;
 
-const Create = ({handleSubmit,createTag,availableTags}: CreateProps) => {
+const Create = ({ handleSubmit, createTag, availableTags }: CreateProps) => {
   return (
     <Container className="py-5">
       <h2>Create Note</h2>
-      <Form handleSubmit={handleSubmit} createTag={createTag} availableTags={availableTags} />
+      <Form
+        handleSubmit={handleSubmit}
+        createTag={createTag}
+        availableTags={availableTags}
+      />
     </Container>
   );
 };
