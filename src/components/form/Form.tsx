@@ -33,7 +33,7 @@ const CustomForm = () => {
           <Form.Group>
             <Form.Label>Tags</Form.Label>
             <ReactSelect
-              options={selectedTags}
+              value={selectedTags}
               onChange={(allTags) => setSelectedTags(allTags as Tag[])}
               className="text-black"
               isMulti
