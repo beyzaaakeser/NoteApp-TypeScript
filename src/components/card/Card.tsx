@@ -10,7 +10,7 @@ const CustomCard = ({ note }: Props) => {
   return (
     <Link to={`/note/${note.id}`}>
       <Card>
-        <Card.Body >
+        <Card.Body>
           <Stack className="align-items-center h-100 justify-content-between">
             <span className="fw-bold text-nowrap text-capitalize">
               {note.title}
@@ -21,7 +21,9 @@ const CustomCard = ({ note }: Props) => {
               className="justify-content-center gap-2"
             >
               {note.tags.map((tag) => (
-                <Badge key={tag.value}>{tag.label}</Badge>
+                <Badge key={tag.value} className="text-capitalize">
+                  {tag.label}
+                </Badge>
               ))}
             </Stack>
           </Stack>

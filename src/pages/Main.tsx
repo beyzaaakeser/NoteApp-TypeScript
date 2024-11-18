@@ -11,11 +11,13 @@ const Main = ({ notes, availableTags }: Props) => {
   const [query, setQuery] = useState<string>('');
   const [selectedTags, setSelectedTags] = useState<Tag[]>([]);
 
-  //   note.title.toLowerCase().includes(query.toLowerCase())
-
-  const filtredNotes = notes.filter((note) => {
-    
-  });
+  const filtredNotes = notes.filter(
+    (note) =>
+      note.title.toLowerCase().includes(query.toLowerCase()) &&
+      selectedTags.every((s_tag) =>
+        note.tags.some((n_tag) => n_tag.value === s_tag.value)
+      )
+  );
 
   return (
     <Container className="mx-auto py-5">
