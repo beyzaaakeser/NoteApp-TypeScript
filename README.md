@@ -1,50 +1,40 @@
-# React + TypeScript + Vite
+<h1>My Note Application - Typescript </h1>
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This application is a modern note application that allows you to manage your notes in an organized and effective way. Users can easily create notes by adding titles, tags, and content to their notes or edit or delete existing notes. The content of the notes can be enriched using various markdown features such as titles, lists, and code blocks. Multiple tags can be added to notes, and notes can be easily categorized with these tags. Users can quickly reach the note they are looking for by filtering notes by title, tag, or both.
 
-Currently, two official plugins are available:
+While TypeScript increases code quality with its powerful type system and advanced tool support, we created a high-performance and flexible user interface with React (Vite). We facilitated navigation within the application with React Router Dom and enabled users to easily add tags to their notes with the React-Select component. Thanks to React-Markdown, the content of the notes can be edited in rich text format, and we achieved a modern and responsive design with React-Bootstrap. We increased the reusability of the code by creating custom hooks with the UseHooks library and assigning a unique ID to each note with UUID.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+<h2> The following technologies were used in the frontend development phase of my site: </h2>
 
-## Expanding the ESLint configuration
+- TypeScript
+- React (Vite)
+- React-Router-Dom
+- React-Select
+- React-Markdown
+- React-Bootstrap
+- UseHooks
+- Uuid
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+ <h4>GIF</h5>
 
-- Configure the top-level `parserOptions` property like this:
+![](/public/NoteApp-gif.gif)
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+<h4>IMAGES</h4>
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+<h5>Main Page</h5>
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+![](/public/main.png)
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+<h5>Create Page</h5>
+
+![](/public/create.png)
+
+<h5>Edit Page</h5>
+
+![](/public/edit.png)
+
+<h5>Filter Page</h5>
+
+![](/public/filter1.png)
+
+![](/public/filter2.png)
